@@ -1,11 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Friederike Charlotte Hechler</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Professional homepage of Friederike Charlotte Hechler — cognitive scientist researching social interaction, embodiment, and neurodiversity."
+  />
   <style>
     /* Base */
+    html { scroll-behavior: smooth; }
     body {
       font-family: "Calibri Light", "Calibri", "Segoe UI", system-ui, sans-serif;
       font-weight: 300;
@@ -17,49 +22,168 @@
       color: #222;
       background: #f9f9f9;
     }
-    header { text-align: center; margin-bottom: 2rem; }
+    header {
+	  position: relative;
+	  text-align: center;
+	  margin-bottom: 2rem;
+	}
+
+	/* circular background image */
+	.profile-pic-bg {
+	  position: absolute;
+	  top: 50%;
+	  left: 20%;
+	  transform: translate(-50%, -50%);
+	  width: 200px;
+	  height: 200px;
+	  border-radius: 50%;
+	  overflow: hidden;
+	  opacity: 0.45; /* faint, sits behind text */
+	  z-index: 0;
+	}
+
+	.profile-pic-bg img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;
+	}
+
+	.header-text {
+	  position: relative;
+	  z-index: 1; /* ensures text sits on top */
+	}
+
+	.header-text h1 {
+	  margin: 0;
+	}
+
+	.header-text p {
+	  margin: 0.25rem 0 0;
+	  font-size: 1.1rem;
+	  color: #555;
+	}
     section { margin-bottom: 2rem; }
-    h1, h2 { font-weight: 400; margin: 0 0 .5rem; }
-    h3 { font-weight: 400; margin: 1.25rem 0 .5rem; font-size: 1.05rem; }
+	h1, h2, h3, h4 {
+	  color: #666;         
+	  font-weight: 300;
+	}
+    h1 {
+	  font-size: 2.25rem;
+	  text-transform: uppercase;
+	  letter-spacing: 0.05em;
+	}
 
-    /* Navigation */
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #444;
-      font-weight: 300;
-      transition: color 0.2s ease;
+	h2 {
+	  font-size: 1.75rem;
+	}
+
+	h3 {
+	  font-size: 1.35rem;
+	}
+
+	h4 {
+	  font-size: 1.15rem;
+	}
+
+ 	/* Navigation */
+	nav {
+	  margin-top: 2.75rem;   
+	  position: relative;
+	  z-index: 1;           
+	  font-size: 1.055rem;
+	}
+
+	nav a {
+	  margin: 0 1rem;
+	  text-decoration: none;
+	  color: #444;
+	  font-weight: 300;
+	  transition: color 0.2s ease;
+	}
+	nav a:hover { color: #9999FF; text-decoration: underline; }
+	  
+    /* Links (global: DOIs, downloads, etc.) */
+    a { color: #444; text-decoration: underline; text-decoration-color: #bbb; transition: color 0.2s ease; }
+    a:hover { color: #9999FF; text-decoration: underline; }
+    a:focus-visible {
+      outline: 2px solid #9999FF;
+      outline-offset: 2px;
+      border-radius: 2px;
     }
-    nav a:hover { color: #0366d6; text-decoration: underline; }
-
-    /* Global link styling (also affects DOIs, downloads) */
-    a { color: #444; text-decoration: none; transition: color 0.2s ease; }
-    a:hover { color: #0366d6; text-decoration: underline; }
 
     /* APA-style reference list */
     .ref-list { list-style: none; padding-left: 0; margin: 0; }
     .ref-list li {
       margin-bottom: 1.1em;
-      padding-left: 1.5em;   /* space before first line */
-      text-indent: -1.5em;   /* hanging indent for subsequent lines */
+      padding-left: 1.5em;   
+      text-indent: -1.5em;   
     }
 
-    /* Compact link list for collaborators */
-    .link-list { list-style: none; padding-left: 0; margin: .25rem 0 0; }
-    .link-list li { margin: .25rem 0; }
+    /* Compact link list */
+    .link-list { list-style: none; padding-left: 0; margin: 0.25rem 0 0; }
+    .link-list li { margin: 0.25rem 0; }
 	  
-	.lab-logos {
+	/* Horizontal link list */
+	.link-list-horizontal {
+	  list-style: none;
 	  display: flex;
-	  flex-wrap: wrap;
-	  gap: 1rem;
-	  align-items: center;
-	  margin: 0.5rem 0 1rem;
+	  justify-content: center; 
+	  flex-wrap: wrap;       
+	  gap: 1.5rem;           
+	  padding: 0;
+	  margin: 0.5rem 0;
 	}
 
-	.lab-logos a img {
-	  height: 60px;   /* adjust as needed */
-	  width: auto;
-	  border: none;
+	.link-list-horizontal li {
+	  margin: 0;
+	}
+
+    /* Institution logos */
+		.institution-pyramid {
+	  display: grid;
+	  grid-template-columns: repeat(2, 1fr);
+	  grid-template-rows: auto auto;
+	  gap: 1rem;
+	  justify-items: center;
+	  align-items: center;
+	  max-width: 250px;
+	  float: right;       /* pushes pyramid to the right side of the text */
+	  margin: 1rem 0 1rem 2rem;
+	}
+
+	.institution-pyramid a:nth-child(1) {
+	  grid-column: 1 / span 2; 
+	}
+
+	.institution-pyramid img {
+	  height: 100px;
+	  width: 100px;
+	  border-radius: 50%;
+	  object-fit: contain;   
+	  background: white;
+	  transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	.institution-pyramid img:hover {
+	  transform: scale(1.08);
+	  opacity: 0.85;
+	}
+	  
+    /* Lab logos */
+    .lab-logos {
+      display: flex;
+	  justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin: 0.5rem 0 1rem;
+    }
+    .lab-logos a img {
+	  height: 150px;           
+	  width: 150px;            
+	  object-fit: contain; 
+	  background: white;     
+	  border-radius: 50%;     
 	  transition: transform 0.2s ease, opacity 0.2s ease;
 	}
 
@@ -68,203 +192,327 @@
 	  opacity: 0.85;
 	}
 
+    /* Responsive embeds (PDF / Video) */
+    .embed {
+      position: relative;
+      width: 100%;
+      margin-top: 1rem;
+      border: 1px solid #e5e5e5;
+      background: #fff;
+    }
+    .embed.is-pdf { padding-top: 62.5%; }   /* ~16:10 */
+    .embed.is-video { padding-top: 56.25%; } /* 16:9 */
+    .embed > iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
   </style>
 </head>
 <body>
   <header>
+  <div class="profile-pic-bg">
+    <img src="images/profile.jpg" alt="Profile picture of Friederike Charlotte Hechler">
+  </div>
+  <div class="header-text">
     <h1>Friederike Charlotte Hechler</h1>
     <p>Cognitive Scientist</p>
+  </div>
     <nav>
       <a href="#about">About</a>
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
       <a href="#presentations">Presentations</a>
-	  <!--<a href="#cv">CV</a>-->
+      <a href="#teaching">Teaching Philosophy</a>
+      <!-- <a href="#cv">CV</a> -->
       <a href="#downloads">Downloads</a>
-      <!--<a href="#dance">Dance</a>-->
+      <!-- <a href="#dance">Dance</a> -->
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
+  <!-- About -->
   <section id="about">
-    <h2>About</h2>
-    <p>
-      I am a cognitive scientist and passionate dancer, interested in how social interaction, embodiment, 
-      and neurodiversity shape human–human and human–machine interaction. 
-      My research combines experimental psychology with participatory methods 
-      to investigate interpersonal coordination.
-    </p>
-
-    
-	<div class="lab-logos">
+	
+	<div class="institution-pyramid">
 	  <a href="https://phd-idealab.com/" target="_blank" rel="noopener">
 		<img src="images/IDEALAB.jpg" alt="IDEALAB Graduate School" />
 	  </a>
-	  <a href="https://nathancaruana.weebly.com/people.html" target="_blank" rel="noopener">
-		<img src="images/HAVIC.png" alt="HAVIC Lab — Flinders University" />
+	  <a href="https://www.uni-potsdam.de/en/cognitive-sciences/index" target="_blank" rel="noopener">
+		<img src="images/UP.png" alt="Universität Potsdam" />
 	  </a>
-	  <a href="https://www.researchgate.net/lab/CHeS-Communication-Hearing-Speech-Lab-Outi-Tuomainen" target="_blank" rel="noopener">
-		<img src="images/CHES.jpg" alt="CHeS Lab — Universität Potsdam" />
-	  </a>
-	  <a href="https://sbs.ethz.ch" target="_blank" rel="noopener">
-		<img src="images/ETH_Social_Brain_Sciences.png" alt="Social Brain Sciences Group — ETH Zürich" />
+	  <a href="https://www.mq.edu.au/faculty-of-medicine-health-and-human-sciences/departments-and-schools/school-of-psychological-sciences" target="_blank" rel="noopener">
+		<img src="images/MQ.png" alt="Macquary University" />
 	  </a>
 	</div>
-	  
-	  <h4>Non-academic Collaborators</h4>
-	  <ul class="link-list">
-		<li><a href="https://autismus-ostfriesland.jimdofree.com" target="_blank" rel="noopener">Frank Fahr</a></li>
-		<li><a href="https://kndhub.com/bodie/" target="_blank" rel="noopener">Bodie Karlek</a></li>
-		<li><a href="https://reizoffen.com/ueber" target="_blank" rel="noopener">Marie Maroske</a></li>
-		<li><a href="https://meikemisia.de" target="_blank" rel="noopener">Meike Misia</a></li>
-	  </ul>
-  </section>
-
-  <section id="research">
-    <h2>Research</h2>
+    <h2>About</h2>
     <p>
-      My work investigates social cognition in neurodiverse populations, focusing on how context shapes individual experience. 
-      I use immersive approaches such as virtual reality, dual eye-tracking, and participatory methods.
+      I am a cognitive scientist and passionate dancer, interested in how social interaction, embodiment,
+      and neurodiversity shape human–human and human–machine interaction. My research combines experimental
+      psychology with participatory methods to investigate interpersonal coordination.
+    </p>
+	  
+	<p>
+		As a member of the PhD Program <em>International Doctorate for Experimental Approaches to Language And Brain</em> (IDEALAB), I got awarded my PhD in Psychology/Cognitive Science under joint supervision at Macquarie University (Nathan Caruana) and Universität Potsdam (Outi Tuomainen).
     </p>
   </section>
 
+  <!-- Research -->
+  <section id="research">
+	<h2>Research</h2>
+	<p>
+	  My research combines psychology, cognitive science, and linguistics to investigate how autistic and non-autistic people signal, perceive, maintain, and update social information during interaction. I focus on how context shapes individual experience and behaviour, and how action–perception loops can lead to social coordination—or its breakdown.
+	</p>
+
+	<div class="lab-logos">
+	  <a href="https://nathancaruana.weebly.com/people.html" target="_blank" rel="noopener">
+		<img src="images/HAVIC.png" alt="HAVIC Lab — Flinders University" loading="lazy" />
+	  </a>
+	  <a href="https://www.researchgate.net/lab/CHeS-Communication-Hearing-Speech-Lab-Outi-Tuomainen" target="_blank" rel="noopener">
+		<img src="images/CHES.jpg" alt="CHeS Lab — Universität Potsdam" loading="lazy" />
+	  </a>
+	  <a href="https://sbs.ethz.ch" target="_blank" rel="noopener">
+		<img src="images/ETH_Social_Brain_Sciences.png" alt="Social Brain Sciences Group — ETH Zürich" loading="lazy" />
+	  </a>
+	</div>
+
+	<p>
+	  As a member of the <em>HAVIC Lab</em> at Flinders University, the <em>CHeS Lab</em> at Universität Potsdam, 
+	  and the <em>Social Brain Sciences Group</em> at ETH Zürich, my PhD research explored how neurodiversity, specifically autism, beliefs about agency, and perceptual cues, such as gaze, shape social interaction in both human–human and human–machine contexts. 
+	  Using semi-interactive web tasks and immersive VR experiments with eye tracking and motion capture, I investigated how autistic and non-autistic people interpret artificial agents as communicative, and how both agent appearance and perceived control influence these interpretations. 
+	  My studies demonstrate that autistic participants are not less sensitive to gaze cues but may respond differently depending on agent features, challenging deficit-based assumptions about autism. 
+	  Building on these findings, I am now conducting studies on attitudes towards AI (in collaboration with Flinders University) and visual perspective taking (in collaboration with UCLouvain).
+	</p>
+
+	<p>
+	  I am committed to inclusive, participatory, and evidence-based neurodiversity research. 
+	  In a participatory project, we partnered with autistic people to revise and validate a self-report measure of autistic traits (<em>Comprehensive Autistic Trait Inventory</em>), resulting in the <em><a href="#downloads">Revised Comprehensive Autistic Trait Inventory</a></em> (CATI-R). 
+	  From this work, we also developed <a href="#downloads">guiding principles</a> for creating or revising individual-difference measures, ensuring accessibility, minimising stigma, reducing bias, and capturing diverse experiences without gender-based distortions. 
+	  Through this collaboration, I learned how research design can either perpetuate exclusion or foster inclusion—depending on whether researchers share power, embed feedback loops, and use language that reflects the diversity of the communities they serve. 
+	  These insights motivate me to build research cultures that are inclusive, human-centred, and critically aware.
+	</p>
+
+	<p>
+	  Finally, I strongly endorse <a href="https://www.cos.io/products/osf" target="_blank" rel="noopener">open science</a> as a foundation for reproducibility and collaborative research. 
+	  I preregister studies, share anonymised data and code, and publish in open-access venues.
+	</p>
+
+    <h3>Non-Academic Collaborators</h3>
+    <ul class="link-list-horizontal">
+	  <li><a href="https://autismus-ostfriesland.jimdofree.com" target="_blank" rel="noopener">Frank Fahr</a></li>
+	  <li><a href="https://kndhub.com/bodie/" target="_blank" rel="noopener">Bodie Karlek</a></li>
+	  <li><a href="https://reizoffen.com/ueber" target="_blank" rel="noopener">Marie Maroske</a></li>
+	  <li><a href="https://meikemisia.de" target="_blank" rel="noopener">Meike Misia</a></li>
+	</ul>
+  </section>
+
+  <!-- Publications -->
   <section id="publications">
-    <h2>Publications</h2>
+    <h2>Publications & Preprints</h2>
+	<h3>Publications</h3>
     <ul class="ref-list">
       <li>
-        Hechler, F. C., Tuomainen, O., Weber, N., Fahr, F., Karlek, B., Maroske, M., Misia, M., &amp; Caruana, N. (2025). 
-        “What does ‘often’ even mean?” Revising and validating the Comprehensive Autistic Trait Inventory in partnership with autistic people. 
-        <em>Molecular Autism, 16</em>(1), 7. 
+        Hechler, F. C., Tuomainen, O., Weber, N., Fahr, F., Karlek, B., Maroske, M., Misia, M., &amp; Caruana, N. (2025).
+        “What does ‘often’ even mean?” Revising and validating the Comprehensive Autistic Trait Inventory in partnership with autistic people.
+        <em>Molecular Autism, 16</em>(1), 7.
         <a href="https://doi.org/10.1186/s13229-025-00643-7" target="_blank" rel="noopener">https://doi.org/10.1186/s13229-025-00643-7</a>
       </li>
       <li>
-        Caruana, N., Hechler, F. C., Cross, E. S., &amp; Tidoni, E. (2025). 
-        The temporal context of eye contact influences perceptions of communicative intent. 
-        <em>Royal Society Open Science, 12</em>(7). 
+        Caruana, N., Hechler, F. C., Cross, E. S., &amp; Tidoni, E. (2025).
+        The temporal context of eye contact influences perceptions of communicative intent.
+        <em>Royal Society Open Science, 12</em>(7).
         <a href="https://doi.org/10.1098/rsos.250277" target="_blank" rel="noopener">https://doi.org/10.1098/rsos.250277</a>
       </li>
     </ul>
 
-    <h2>Pre-prints</h2>
+    <h3>Preprints under Review</h3>
     <ul class="ref-list">
       <li>
-        Hechler, F. C., Tidoni, E., Stark, C., Aitken, K., Cross, E. S., &amp; Caruana, N. (2025). 
-        Autistic and non-autistic people evaluate eye contact cues in context to identify communicative opportunities. 
-        Manuscript under review at <em>Journal of Experimental Psychology: Human Perception and Performance</em>. 
+        Hechler, F. C., Tidoni, E., Stark, C., Aitken, K., Cross, E. S., &amp; Caruana, N. (2025).
+        Autistic and non-autistic people evaluate eye contact cues in context to identify communicative opportunities.
+        Manuscript under review at <em>Journal of Experimental Psychology: Human Perception and Performance</em>.
         <a href="https://doi.org/10.31234/osf.io/zcvp6_v1" target="_blank" rel="noopener">https://doi.org/10.31234/osf.io/zcvp6_v1</a>
       </li>
       <li>
-        Hechler, F. C., Cross, E. S., Perez, G. A., Miguel-Blanco, A., Nalepka, P., &amp; Caruana, N. (2025). 
-        The role of mentalising and agent appearance on gaze use during joint attention. 
-        Manuscript under review at <em>Social Robotics</em>. 
+        Hechler, F. C., Cross, E. S., Perez, G. A., Miguel-Blanco, A., Nalepka, P., &amp; Caruana, N. (2025).
+        The role of mentalising and agent appearance on gaze use during joint attention.
+        Manuscript under review at <em>Social Robotics</em>.
         <a href="https://doi.org/10.31234/osf.io/ser72_v2" target="_blank" rel="noopener">https://doi.org/10.31234/osf.io/ser72_v2</a>
       </li>
       <li>
-        Hechler, F. C., Tidoni, E., Cross, E. S., &amp; Caruana, N. (2025). 
-        The influence of human agency beliefs on the perception of gaze-signalled communicative intent. 
-        Manuscript under review at <em>Scientific Reports</em>. 
+        Hechler, F. C., Tidoni, E., Cross, E. S., &amp; Caruana, N. (2025).
+        The influence of human agency beliefs on the perception of gaze-signalled communicative intent.
+        Manuscript under review at <em>Scientific Reports</em>.
         <a href="https://doi.org/10.31234/osf.io/6azxy_v1" target="_blank" rel="noopener">https://doi.org/10.31234/osf.io/6azxy_v1</a>
       </li>
       <li>
-        Hechler, F. C., Tuomainen, O., &amp; Caruana, N. (2025). 
-        Autistic traits, gender and age interact to influence attitudes towards AI. 
+        Hechler, F. C., Tuomainen, O., &amp; Caruana, N. (2025).
+        Autistic traits, gender and age interact to influence attitudes towards AI.
         Manuscript under review at <em>Computers in Human Behavior</em>.
       </li>
       <li>
-        Hechler, F. C., Caruana, N., Fahr, F., Karlek, B., Maroske, M., Misia, M., &amp; Tuomainen, O. (2025).  
-        Validating the German version of the Revised Comprehensive Autistic Trait Inventory. 
-        Manuscript under review at <em>Autism in Adulthood</em>. 
+        Hechler, F. C., Caruana, N., Fahr, F., Karlek, B., Maroske, M., Misia, M., &amp; Tuomainen, O. (2025).
+        Validating the German version of the Revised Comprehensive Autistic Trait Inventory.
+        Manuscript under review at <em>Autism in Adulthood</em>.
         <a href="https://doi.org/10.31234/osf.io/gkrvp_v1" target="_blank" rel="noopener">https://doi.org/10.31234/osf.io/gkrvp_v1</a>
       </li>
     </ul>
   </section>
 
+  <!-- Presentations -->
   <section id="presentations">
-    <h2>Posters</h2>  
-    <p style="margin-bottom:0.5rem;">
+    <h2>Presentations</h2>
+    <p style="margin-bottom: 0.5rem;">
       Hechler, F. C., Cross, E. S., Perez, G. A., Miguel-Blanco, A., Nalepka, P., &amp; Caruana, N. (2025, July).
       <em>The role of intentional stance and agent appearance on gaze use during joint attention</em>.
       Poster session presented at the <em>10th Joint Action Meeting</em>, Turin, Italy.
     </p>
 
-    <!-- Responsive PDF embed -->
-    <div style="position: relative; padding-top: 62.5%; margin-top: 1rem; border: 1px solid #e5e5e5; background:#fff;">
-      <iframe 
+    <div class="embed is-pdf">
+      <iframe
         src="presentations/2025_07_Belief_Poster.pdf#view=FitH"
         title="JAM 2025 Poster — Hechler et al."
-        style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
+        loading="lazy"
       ></iframe>
     </div>
 
-    <p style="margin-top:0.75rem;">
-      Can’t see the embed? 
-      <a href="presentations/2025_07_Belief_Poster.pdf" target="_blank" rel="noopener">Open the PDF</a> 
-      or 
+    <p style="margin-top: 0.75rem;">
+      Can’t see the embed?
+      <a href="presentations/2025_07_Belief_Poster.pdf" target="_blank" rel="noopener">Open the PDF</a>
+      or
       <a href="presentations/2025_07_Belief_Poster.pdf" download>download it</a>.
+    </p>
+
+    <h3>3 Minute Thesis</h3>
+    <div class="embed is-video" style="background: #000;">
+      <iframe
+        src="https://www.youtube.com/embed/vtSR9-m-bQE"
+        title="3 Minute Thesis — YouTube"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </section>
+
+  <!-- Teaching -->
+  <section id="teaching">
+    <h2>Teaching Philosophy</h2>
+    <p>
+      As an academic teacher with a background in dance education, I see teaching as a dynamic and reciprocal
+      process that nurtures students' intellectual, emotional, and embodied capacities. My teaching philosophy
+      is grounded in Macquarie University's values of <em>Engage</em>, <em>Empower</em>, and <em>Evolve</em>,
+      with a focus on cultivating reflective, adaptable, and independent learners.
+    </p>
+
+    <h3>Engage: Learning through Connection and Embodiment</h3>
+    <p>
+      Engagement, for me, begins with presence—being fully attuned to the moment, to students' needs, and to the
+      evolving classroom context. Whether in studio-based practice or academic discussion, I strive to create an
+      environment where students can participate actively and authentically.
+    </p>
+    <ul class="link-list">
+      <li><strong>Active Learning:</strong> Classes are student focused, including dialogic teaching and collaborative learning strategies that connect theory to lived experience.</li>
+      <li><strong>Critical Reflection:</strong> Reflection is central to my approach: students analyse not only what they learn, but how they learn. Students frequently keep reflection journals to critically engage with content, track their learning process, and relate new insights to their practice or cultural background.</li>
+      <li><strong>Structured Guidance:</strong> I provide clear frameworks and supportive scaffolding so students can confidently navigate complex ideas and refine their understanding over time.</li>
+    </ul>
+
+    <h3>Empower: Nurturing Independent and Inclusive Learners</h3>
+    <p>
+      I view education as a practice of empowerment, supporting students to trust their instincts, articulate their
+      questions, and shape their learning paths with confidence and care.
+    </p>
+    <ul class="link-list">
+      <li><strong>Fostering Autonomy:</strong> I encourage students to take initiative, engage in peer learning, and take creative risks in selecting their own topics for the final project.</li>
+      <li><strong>Inclusive Practice:</strong> I bring a strong commitment to inclusive and culturally responsive pedagogy. I integrate technology to enhance engagement and access (e.g., online polls and asynchronous forums) and offer alternative formats—such as video responses and creative writing—to accommodate diverse learning styles and linguistic backgrounds, particularly in international cohorts.</li>
+      <li><strong>Developing Research and Learning Skills:</strong> Beyond content mastery, I aim to equip students with the tools to become self-directed learners and emerging researchers.</li>
+      <li><strong>Open Science and Transparency:</strong> In my research, I prioritise open science by preregistering studies, sharing anonymised data and code, and publishing open access. In teaching, I invite students to engage critically with transparency, accessibility, and accountability, and—where possible—to share work in a class repository to foster openness and peer learning.</li>
+    </ul>
+
+    <h3>Evolve: Teaching as a Living, Reflective Practice</h3>
+    <p>
+      Teaching is never static. I view my practice as continuously evolving, shaped by dialogue with colleagues and students,
+      and informed by pedagogical research and reflective inquiry.
+    </p>
+    <ul class="link-list">
+      <li><strong>Professional Growth:</strong> I draw on current scholarship in education, embodiment, and the arts to inform my methods and engage regularly in professional development, seeking interdisciplinary conversations that enrich perspectives on teaching, learning, and student wellbeing. Currently, I am completing the one‑year “Teaching Professionals” programme at <a href="https://www.uni-potsdam.de/" target="_blank" rel="noopener">Universität Potsdam</a>.</li>
+      <li><strong>Feedback and Collaboration:</strong> I actively invite feedback from students and treat teaching as a collaborative venture. Understanding what supports or hinders learning helps me adapt courses to individual needs. As in my research practice, I see co‑design and co‑reflection as key to creating meaningful, responsive curricula. Students also practise giving constructive feedback to peers.</li>
+    </ul>
+
+    <p>
+      Taken together, I strive to build learning environments where students feel seen, challenged, and inspired.
+      I see education as a shared journey—one that honours complexity, cultivates curiosity, and prepares students
+      to move forward with resilience and care.
     </p>
   </section>
 
- <!-- <section id="cv">
-	  <h2>Curriculum Vitae</h2>
-	  <p>
-		You can download my full CV here:
-	  </p>
-	  <ul class="link-list">
-		<li>
-		  <a href="cv/Hechler_CV.pdf" download>
-			📄 Download CV (PDF)
-		  </a>
-		</li>
-	  </ul>
+  <!-- CV (optional) -->
+  <!--
+  <section id="cv">
+    <h2>Curriculum Vitae</h2>
+    <p>You can download my full CV here:</p>
+    <ul class="link-list">
+      <li><a href="cv/Hechler_CV.pdf" download>📄 Download CV (PDF)</a></li>
+    </ul>
   </section>
-	-->
+  -->
+
+  <!-- Downloads -->
   <section id="downloads">
-    <h2>Comprehensive Autistic Traits Inventory (CATI-R)</h2>
+    <h2>Downloads</h2>
+	<h3>Comprehensive Autistic Traits Inventory (CATI-R)</h3>
     <p>
-      The CATI-R is a revised and validated self-report questionnaire developed in partnership with autistic people 
+      The CATI-R is a revised and validated self-report questionnaire developed in partnership with autistic people
       to provide an inclusive, accessible, and reliable measure of autistic traits.
     </p>
+	<h4>English</h4>
     <ul class="link-list">
       <li><a href="downloads/CATIR.pdf" download>CATI-R (English)</a></li>
       <li><a href="downloads/CATIR_Administration.pdf" download>CATI-R Administration (English)</a></li>
       <li><a href="downloads/CATIR_Scoring_Key.pdf" download>CATI-R Scoring Key (English)</a></li>
-      <li><a href="downloads/CATIR_Revision_Notes.pdf" download>CATI-R Revision Notes</a></li>
+      <li><a href="downloads/CATIR_Revision_Notes.pdf" download>Detailed Revision Notes</a></li>
+	</ul>
+	<h4>German</h4>
+    <ul class="link-list">
       <li><a href="downloads/CATIR_German.pdf" download>CATI-R (German)</a></li>
       <li><a href="downloads/CATIR_German_Administration.pdf" download>CATI-R Administration (German)</a></li>
       <li><a href="downloads/CATIR_German_Scoring_Key.pdf" download>CATI-R Scoring Key (German)</a></li>
+	</ul>
+	<h4>Italian</h4>
+    <ul class="link-list">
       <li><a href="downloads/CATIR_Italian.pdf" download>CATI-R (Italian)</a></li>
       <li><a href="downloads/CATIR_Italian_Administration.pdf" download>CATI-R Administration (Italian)</a></li>
       <li><a href="downloads/CATIR_Italian_Scoring_Key.pdf" download>CATI-R Scoring Key (Italian)</a></li>
     </ul>
-  </section>
 
-  <section id="guidelines">
-    <h2>Guidelines for Personality Style Measures</h2>
+    <h3>Guidelines for Personality Style Measures</h3>
     <p>
-      This document provides recommendations for designing and validating personality style measures 
+      This document provides recommendations for designing and validating personality style measures
       tailored to subclinical neurodivergent traits, aiming to improve inclusivity and psychometric quality.
     </p>
     <ul class="link-list">
       <li>
         <a href="downloads/Guidelines_for_Personality_Style_Measures_for_Subclinical_Neurodivergent_Traits.pdf" download>
-          Guidelines for Personality Style Measures for Subclinical Neurodivergent Traits (PDF)
+          Guidelines for Personality Style Measures for Subclinical Neurodivergent Traits 
         </a>
       </li>
     </ul>
   </section>
 
-  <!--<section id="dance">
-    <h2>Dance</h2>
-    <ul class="link-list">
-      <li><em>Project / class / performance — link</em></li>
-      <li><em>Project / class / performance — link</em></li>
-    </ul>
-  </section>
--->
+  <!-- Contact -->
   <section id="contact">
     <h2>Contact</h2>
     <p>
-      📧 <a href="mailto:frichahec@gmail.com">frichahec@gmail.com</a><br>
+	<svg xmlns="http://www.w3.org/2000/svg" 
+         width="20" height="20" viewBox="0 0 24 24" 
+         fill="none" stroke="black" stroke-width="2" 
+         stroke-linecap="round" stroke-linejoin="round" 
+         style="vertical-align: middle; margin-right: 6px;">
+      <rect x="3" y="5" width="18" height="14" rx="2" ry="2"/>
+      <polyline points="3,7 12,13 21,7"/>
+    </svg>
+    <a href="mailto:frichahec@gmail.com">frichahec@gmail.com</a>
       <!-- 🔗 <a href="https://github.com/FriederikeCharlotte">GitHub</a> · -->
       <!-- 🔗 <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a> -->
     </p>
